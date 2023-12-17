@@ -20,7 +20,7 @@ public class CarsController {
 	}
 	@PostMapping("person")
 	PersonDto addPerson(@RequestBody PersonDto personDto) {
-		//TODO HW #53
+		
 		return carsService.addPerson(personDto);
 	}
 	@PutMapping("person")
@@ -29,11 +29,10 @@ public class CarsController {
 	}
 	@PutMapping("trade")
 	TradeDealDto purchase(@RequestBody TradeDealDto tradeDealDto) {
-		//TODO HW #53
+		
 		return carsService.purchase(tradeDealDto);
 	}
 	@DeleteMapping("person/{id}")
-	//TODO HW #53
 	PersonDto deletePerson(@PathVariable(name="id") long id) {
 		return carsService.deletePerson(id);
 	}
