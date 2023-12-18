@@ -14,4 +14,5 @@ public interface CarsService {
 	TradeDealDto purchase(TradeDealDto tradeDeal);
 	List<CarDto> getOwnerCars(long id);
 	PersonDto getCarOwner(String carNumber);
+	
 }
