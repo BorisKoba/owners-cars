@@ -16,13 +16,13 @@ public class Model {
 	@Column(name = "engine_capacity", nullable = false)
 	int engineCapacity;
 public Model(ModelDto modelDto) {
-	modelYear = getModelYear();
+	modelYear = new ModelYear(modelDto.model(), Integer.valueOf(modelDto.year()));
 	company = modelDto.company();
 	enginePower = modelDto.enginePower();
 	engineCapacity = modelDto.engineCapacity();	
 }
 public ModelDto build() {
-	return new ModelDto(modelYear.name,modelYear.getYear(),company, enginePower, engineCapacity);
+	return new ModelDto(modelYear.name,String.valueOf(modelYear.year),company, enginePower, engineCapacity);
 	
 }
 }

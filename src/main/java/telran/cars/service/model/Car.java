@@ -28,17 +28,15 @@ public class Car {
 	
 	public Car(CarDto carDto) {
 		number = carDto.number();
-		model = getModel();
+		model = new Model(carDto.model(), carDto.year());
 		carOwner = getCarOwner();
 		color = carDto.color();
 		kilometers = carDto.kilometers();
 		state = CarState.valueOf(carDto.state());    
 	}
-	public String stateToString(CarState state) {
-		return state.toString();
-	}
+	
 	public CarDto build() {
-		return new CarDto(number, model.modelYear.name, model.modelYear.year, carOwner.id, color, kilometers, stateToString(state));
+		return new CarDto(number, model.modelYear.name, model.modelYear.year, carOwner.id, color, kilometers, String.valueOf(state));
 	}
 	
 	
