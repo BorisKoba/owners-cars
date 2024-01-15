@@ -16,4 +16,15 @@ public interface ValidationConstants {
 	String WRONG_DATE_FORMAT = "Wrong date format, must be YYYY-MM-dd";
 	String MISSING_PERSON_EMAIL = "Missing email address";
 	String WRONG_EMAIL_FORMAT = "Wrong email format";
+	String MISSING_DATE_MESSAGE = "Missing date";
+	String DATE_REGEXP = "\\d{4}-\\d{2}-\\d{2}";
+	String MISSING_CAR_YEAR_MESSAGE = "Missing car year";
+	String YEAR_REGEXP = "\\d{4}";
+	String WRONG_YEAR_FORMAT = "Incorrect car year";
+	String MISSING_COMPANY_MESSAGE = "Missing company";
+	String MISSING_ENGINE_POWER_MESSAGE = "Missing engine power";
+	String MISSING_ENGINE_CAPACITY_MESSAGE = "Missing engine capacity";
+	String MISSING_CAR_COLOR_MESSAGE = "Missing car color";
+	String MISSING_CAR_KILOMETERS_MESSAGE = "Missing car kilometers";
+	String MISSING_CAR_STATE_MESSAGE = "Missing car state";
 }

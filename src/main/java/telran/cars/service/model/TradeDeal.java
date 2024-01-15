@@ -2,6 +2,7 @@ package telran.cars.service.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import telran.cars.dto.TradeDealDto;
 @Entity
 @Table(name = "trade_deals")
 public class TradeDeal {
@@ -16,4 +17,5 @@ public class TradeDeal {
 	CarOwner carOwner;
 	@Temporal(TemporalType.DATE)
 	LocalDate date;
+	
 }
