@@ -1,45 +1,52 @@
 package telran.cars.service.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import telran.cars.dto.CarDto;
+import telran.cars.dto.CarState;
 
-import java.time.LocalDate;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.*;
-import telran.cars.dto.*;
-import telran.cars.service.model.*;
 @Entity
-@AllArgsConstructor
 @Getter
-@Table(name = "cars")
+@Table(name="cars")
+@NoArgsConstructor
 public class Car {
 	@Id
+	@Column(name="car_number")
 	String number;
 	@ManyToOne
-	@JoinColumns({@JoinColumn(name="model_name", nullable = false) ,
-		@JoinColumn(name="model_year",nullable = false)})
+	@JoinColumns({@JoinColumn(name="model_name", nullable = false),
+		@JoinColumn(name="model_year", nullable = false)})
+	@Setter
 	Model model;
 	@ManyToOne
-	@JoinColumn(name = "owner_id", nullable = true)
+	@JoinColumn(name="owner_id", nullable=true)
+	@Setter
+	@OnDelete(action = OnDeleteAction.SET_NULL)
 	CarOwner carOwner;
 	String color;
-	int kilometers;
-	@Enumerated(EnumType.STRING)
+	@Setter
+	Integer kilometers;
+	@Enumerated(EnumType.STRING) // value in the table will be a string (by default a number)
+	@Column(name="car_state")
 	CarState state;
 	
-	public Car(CarDto carDto) {
-		number = carDto.number();
-		model = new Model(carDto.model(), carDto.year());
-		carOwner = getCarOwner();
-		color = carDto.color();
-		kilometers = carDto.kilometers();
-		state = CarState.valueOf(carDto.state());    
+	public static Car of(CarDto carDto) {
+		return new Car(carDto.number(),  carDto.color(), carDto.kilometers(), carDto.state());
 	}
-	
 	public CarDto build() {
-		return new CarDto(number, model.modelYear.name, model.modelYear.year, carOwner.id, color, kilometers, String.valueOf(state));
+		return new CarDto(number, model.modelYear.getName(), model.modelYear.getYear(), color, kilometers, state);
 	}
-	
-	
+	private Car(String number, String color, Integer kilometers, CarState state) {
+		this.number = number;
+		this.color = color;
+		this.kilometers = kilometers;
+		this.state = state;
+	}
 	
 	
 }
